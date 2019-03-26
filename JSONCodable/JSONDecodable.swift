@@ -98,9 +98,11 @@ public class JSONDecoder {
     /// returns `nil` if invalid format (i.e. no brackets or contents not an `Int`)
     internal func parseArrayIndex(_ key:String) -> Int? {
         var chars = key.characters
-        let first = chars.popFirst()
-        let last = chars.popLast()
+        let first = chars.first
+        let last = chars.last
         if first == "[" && last == "]" {
+            chars.removeFirst()
+            chars.removeLast()
             return Int(String(chars))
         } else {
             return nil
